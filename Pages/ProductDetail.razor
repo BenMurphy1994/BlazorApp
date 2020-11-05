@@ -1,0 +1,12 @@
+﻿@page "/product-detail"
+
+<h2>@Title</h2>
+<div>@Description</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "Product detail";
+
+    [Parameter]
+    public string Description { get; set; } ="description";
+}

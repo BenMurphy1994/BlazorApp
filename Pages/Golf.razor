@@ -1,0 +1,90 @@
+﻿@page "/golf"
+
+@using BlazorApp.Data
+
+<style>
+    td {
+        padding: 10px;
+    }
+    input {
+        width: 40px;
+    }
+</style>
+
+<table>
+    <tr>
+        <td>Hole</td>
+        @foreach (var hole in frontNine)
+        {
+            <td>@hole.HoleNumber</td>
+        }
+    </tr>
+    <tr>
+        <td>Par</td>
+        @foreach (var hole in frontNine)
+        {
+            <td>@hole.Par</td>
+        }
+    </tr>
+    <tr>
+        <td>Yards</td>
+        @foreach (var hole in frontNine)
+        {
+            <td>@hole.Yardage</td>
+        }
+    </tr>
+    <tr>
+        <td>Score</td>
+        @foreach (var hole in frontNine)
+        {
+            <td>
+                <input type="number" id="score-hole-@hole.HoleNumber" name="score-hole-@hole.HoleNumber" min="1" max="10"/>
+            </td>
+        }
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>Hole</td>
+        @foreach (var hole in backNine)
+        {
+            <td>@hole.HoleNumber</td>
+        }
+    </tr>
+    <tr>
+        <td>Par</td>
+        @foreach (var hole in backNine)
+        {
+            <td>@hole.Par</td>
+        }
+    </tr>
+    <tr>
+        <td>Yards</td>
+        @foreach (var hole in backNine)
+        {
+            <td>@hole.Yardage</td>
+        }
+    </tr>
+    <tr>
+        <td>Score</td>
+        @foreach (var hole in backNine)
+        {
+            <td>
+                <input type="number" id="score-hole-@hole.HoleNumber" name="score-hole-@hole.HoleNumber" min="1" max="10" />
+            </td>
+        }
+    </tr>
+</table>
+
+<button class="btn btn-primary" @onclick="SaveScore">Save Score</button>
+
+@code {
+    IEnumerable<GolfHole> frontNine = new Parley().CourseHoles.Take(9);
+    IEnumerable<GolfHole> backNine = new Parley().CourseHoles.Skip(9).Take(9);
+
+    private void SaveScore()
+    {
+        
+    }
+}
